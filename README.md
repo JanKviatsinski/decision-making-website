@@ -12,7 +12,6 @@ View in Astro themes at [https://astro.build/themes/details/saral/](https://astr
 
 > Like what you see? Consider starring the repository 🌟
 
-![Theme Screenshot](./screenshot.jpg)
 
 Derived from [yashjawale.github.io](https://yashjawale.github.io)
 
