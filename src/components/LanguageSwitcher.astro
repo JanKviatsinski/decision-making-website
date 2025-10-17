@@ -1,0 +1,30 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { Icon }from 'astro-icon/components';
+
+const languages = {
+  en: 'English',
+  pl: 'Polski',
+  ru: 'Русский',
+};
+
+const currentLocale = (Astro.currentLocale || 'en') as keyof typeof languages;
+---
+
+<div class="relative group">
+  <button class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
+    <Icon name="mdi:web" size={24} />
+    <span class="hidden sm:inline">{languages[currentLocale]}</span>
+    <Icon name="mdi:chevron-down" size={24} />
+  </button>
+  <div class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 hidden group-hover:block">
+    {Object.entries(languages).map(([locale, name]) => (
+      <a
+        href={getRelativeLocaleUrl(locale)}
+        class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+      >
+        {name}
+      </a>
+    ))}
+  </div>
+</div>

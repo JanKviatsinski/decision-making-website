@@ -2,14 +2,18 @@
 import NavbarLink from './NavbarLink.astro'
 import { Icon } from 'astro-icon/components'
 import ThemeSelector from './ThemeSelector.astro'
-import { SITE_BASE, WebsiteLinks } from '../consts'
+import LanguageSwitcher from './LanguageSwitcher.astro'
+import { WebsiteLinks } from '../consts'
 import LogoSVG from '../assets/logo.svg'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+const currentLocale = Astro.currentLocale || 'en'
 ---
 
 <header class="fixed top-0 w-full z-40 bg-background dark:bg-background-dark">
 	<nav class="">
 		<div class="app-container flex justify-between items-center py-5">
-			<a href=`${SITE_BASE}/` aria-label="Home">
+			<a href={getRelativeLocaleUrl(currentLocale, '/')} aria-label="Home">
 				<LogoSVG height={36} width={36} />
 			</a>
 			<div class="gap-8 hidden md:flex items-center">
@@ -17,7 +21,7 @@ import LogoSVG from '../assets/logo.svg'
 					WebsiteLinks.map((link) => (
 						<NavbarLink
 							class="text-lg"
-							href={`${SITE_BASE}/${link.url}`}
+							href={getRelativeLocaleUrl(currentLocale, link.url)}
 							target={link.url.charAt(0) === 'h' ? '_blank' : '_self'}
 						>
 							{link.name}
@@ -25,6 +29,7 @@ import LogoSVG from '../assets/logo.svg'
 					))
 				}
 				<ThemeSelector />
+				<LanguageSwitcher />
 			</div>
 			<button
 				class="md:hidden cursor-pointer"
@@ -51,12 +56,13 @@ import LogoSVG from '../assets/logo.svg'
 				<div class="flex flex-col h-full items-start gap-8 pt-16">
 					{
 						WebsiteLinks.map((link) => (
-							<NavbarLink class="text-4xl font-light" href={link.url}>
+							<NavbarLink class="text-4xl font-light" href={getRelativeLocaleUrl(currentLocale, link.url)}>
 								{link.name}
 							</NavbarLink>
 						))
 					}
 					<ThemeSelector class:list="mt-4" />
+					<LanguageSwitcher />
 				</div>
 			</div>
 		</div>
