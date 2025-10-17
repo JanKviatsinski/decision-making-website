@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components'
 import ThemeSelector from './ThemeSelector.astro'
 import LanguageSwitcher from './LanguageSwitcher.astro'
 import { WebsiteLinks } from '../consts'
-import LogoSVG from '../assets/logo.svg'
+import LogoSVG from '../assets/logo-rounded.svg'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
 const currentLocale = Astro.currentLocale || 'en'
@@ -14,7 +14,7 @@ const currentLocale = Astro.currentLocale || 'en'
 	<nav class="">
 		<div class="app-container flex justify-between items-center py-5">
 			<a href={getRelativeLocaleUrl(currentLocale, '/')} aria-label="Home">
-				<LogoSVG height={36} width={36} />
+				<LogoSVG height={54} width={64} />
 			</a>
 			<div class="gap-8 hidden md:flex items-center">
 				{
