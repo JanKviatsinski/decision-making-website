@@ -4,19 +4,27 @@ import { SITE_BASE, SocialLinks } from '../../consts'
 import { Icon } from 'astro-icon/components'
 import BlogCard from '../../components/BlogCard.astro'
 import { getCollection } from 'astro:content'
+import TwoColumns from '@/components/TwoColumns.astro'
+import { Image } from 'astro:assets'
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 4)
+
+  const images = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/assets/**/*.{jpeg,jpg,png,gif,webp}'
+)
+
+const peopleOnTheTrainImage = '/src/assets/people talking on the train.webp'
 ---
 
 <BaseLayout>
 	<main
-		class="app-container flex flex-col gap-12 justify-center py-36 md:py-48 pt-44 md:pt-56 relative"
+		class="app-container flex flex-col gap-12 justify-center py-24 md:py-32 pt-44 md:pt-56 relative"
 	>
 		<div>
 			<p class="block text-3xl opacity-70 mt-9 mb-4">Welcome to</p>
-			<h1 class="text-8xl font-bold leading-none">Decision Garden</h1>
+			<h1 class="text-6xl font-bold leading-none">Decision Garden</h1>
 		</div>
 		<p class="text-2xl max-w-2xl font-light leading-normal">
 			The place where you will make decisions.
@@ -48,7 +56,28 @@ const posts = (await getCollection('blog'))
 		</a>
 	</section>
 
+  <TwoColumns>
+  <div slot="left" class='text-2xl'>
+    Sometimes, just telling someone about your struggles can help you find a way to resolve them. You can discuss it with me. Imagine that I’m just a stranger you met on a train during a long trip. Let’s talk.
+    		<a
+					class="btn-primary"
+					href=""
+					target="_blank"
+					>Get in touch
+					<Icon height={20} name="mdi:calendar" />
+				</a>
+  </div>
+
+  <div slot="right">			
+    <Image
+				src={images[peopleOnTheTrainImage]()}
+				alt={'people talking on the train'}
+				class="object-cover rounded-xl aspect-video"
+			/></div>
+  </TwoColumns>
+
 	<!-- Recent Posts Section -->
+  <!-- TODO replace section by TwoColumns -->
 	<section class="app-container py-42 grid lg:grid-cols-2 gap-28 lg:gap-10">
 		<div class="space-y-6">
 			<h2 class="section-title">About Me</h2>
