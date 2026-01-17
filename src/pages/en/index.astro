@@ -11,11 +11,12 @@ const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 4)
 
-  const images = import.meta.glob<{ default: ImageMetadata }>(
+const images = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/**/*.{jpeg,jpg,png,gif,webp}'
 )
 
 const peopleOnTheTrainImage = '/src/assets/people talking on the train.webp'
+const walkingInAGardenImage = '/src/assets/walking_in_a_garden.webp'
 ---
 
 <BaseLayout>
@@ -56,29 +57,80 @@ const peopleOnTheTrainImage = '/src/assets/people talking on the train.webp'
 		</a>
 	</section>
 
-  <TwoColumns>
-  <div slot="left" class='text-2xl'>
-    Sometimes, just telling someone about your struggles can help you find a way to resolve them. You can discuss it with me. Imagine that I’m just a stranger you met on a train during a long trip. Let’s talk.
-    		<a
-					class="btn-primary"
-					href=""
-					target="_blank"
-					>Get in touch
-					<Icon height={20} name="mdi:calendar" />
-				</a>
-  </div>
+	<TwoColumns>
+		<div slot="left" class="md:order-2">
+			<h2 class="section-title">
+				Let’s talk like old friends walking through a garden.
+			</h2>
+			<p class="text-2xl">
+				I want this website and our meetings to feel like a peaceful, beautiful
+				garden—a place where you can share your thoughts with someone you truly
+				trust.
+			</p>
+			<a class="btn-primary ml-auto" href="" target="_blank"
+				>Get in touch
+				<Icon height={20} name="mdi:calendar" />
+			</a>
+		</div>
 
-  <div slot="right">			
-    <Image
+		<div slot="right">
+			<Image
+				src={images[walkingInAGardenImage]()}
+				alt={'people talking on the train'}
+				class="object-cover rounded-xl aspect-video"
+			/>
+		</div>
+	</TwoColumns>
+
+	<TwoColumns>
+		<div slot="left" class="">
+			<h2 class="section-title">
+				Or we can discuss your problem like strangers.
+			</h2>
+			<p class="text-2xl">
+				Sometimes, just telling someone about your struggles can help you find a
+				way to resolve them. You can discuss it with me. Imagine that I’m just a
+				stranger you met on a train during a long trip. Let’s talk. We will
+				newer meet again after the end of the trip.
+			</p>
+			<a class="btn-primary" href="" target="_blank"
+				>Get in touch
+				<Icon height={20} name="mdi:calendar" />
+			</a>
+		</div>
+
+		<div slot="right">
+			<Image
 				src={images[peopleOnTheTrainImage]()}
 				alt={'people talking on the train'}
 				class="object-cover rounded-xl aspect-video"
-			/></div>
-  </TwoColumns>
+			/>
+		</div>
+	</TwoColumns>
+
+	<section class="app-container">
+		<h2 class="section-title">Human support shouldn't cost a fortune.</h2>
+		<p class="text-2xl md:max-w-3xl text-justify">
+			I am simply one human helping another. You don't need to pay the high
+			rates of a professional coach or psychologist. I believe in a "pay what
+			you can" model—after each meeting, you decide on an amount that feels
+			right to you as a thank you.
+		</p>
+		<div class="flex justify-between text-justify md:max-w-2xl">
+			<a class="btn-primary" href="#payment" target="_blank"
+				>About payment <Icon height={20} name="mdi:hand-coin" /></a
+			>
+
+			<!-- <a class="btn-primary" href="" target="_blank"
+				>Get in touch
+				<Icon height={20} name="mdi:calendar" />
+			</a> -->
+		</div>
+	</section>
 
 	<!-- Recent Posts Section -->
-  <!-- TODO replace section by TwoColumns -->
-	<section class="app-container py-42 grid lg:grid-cols-2 gap-28 lg:gap-10">
+	<!-- TODO replace section by TwoColumns -->
+	<section class="app-container py-20 grid lg:grid-cols-2 gap-28 lg:gap-10">
 		<div class="space-y-6">
 			<h2 class="section-title">About Me</h2>
 			<p class="text-lg max-w-xl pb-4">
@@ -110,5 +162,25 @@ const peopleOnTheTrainImage = '/src/assets/people talking on the train.webp'
 				</a>
 			</div>
 		</div>
+	</section>
+
+	<section class="app-container py-20">
+		<h2 class="section-title" id="payment">
+			A simple, human way to give back.
+		</h2>
+		<p class="text-2xl md:max-w-3xl text-justify">
+			After we talk, you decide the value of the help you received. It’s an
+			unconventional approach, but I believe in the kindness and integrity of
+			others.
+			<br />
+			<br />
+			Bank account: 11111213123123
+			<br />
+			<br />
+			BitCoin wallet: some wallet number.
+			<br />
+			<br />
+			<p class="font-bold text-2xl">Thank you so mutch!</p>
+		</p>
 	</section>
 </BaseLayout>
