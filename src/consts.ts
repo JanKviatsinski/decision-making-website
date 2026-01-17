@@ -34,10 +34,10 @@ export const WebsiteLinks = [
 		name: 'Home',
 		url: '/',
 	},
-	{
-		name: 'Blog',
-		url: 'blog',
-	},
+	// {
+	// 	name: 'Blog',
+	// 	url: 'blog',
+	// },
 	{
 		name: 'About',
 		url: 'about',

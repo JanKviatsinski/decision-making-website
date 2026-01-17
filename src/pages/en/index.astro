@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { SITE_BASE, SocialLinks } from '../../consts'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
 import { Icon } from 'astro-icon/components'
 // import BlogCard from '../../components/BlogCard.astro'
 // import { getCollection } from 'astro:content'
@@ -17,6 +19,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 
 const peopleOnTheTrainImage = '/src/assets/people talking on the train.webp'
 const walkingInAGardenImage = '/src/assets/walking_in_a_garden.webp'
+
+const currentLocale = Astro.currentLocale || 'en'
 ---
 
 <BaseLayout>
@@ -157,7 +161,9 @@ const walkingInAGardenImage = '/src/assets/walking_in_a_garden.webp'
 				A brief introduction about yourself. You can include your profession,
 				hobbies, interests, or anything you'd like visitors to know about you.
 			</p>
-			<a class="btn-secondary" href={`${SITE_BASE}/about`}
+			<a
+				class="btn-secondary"
+				href={getRelativeLocaleUrl(currentLocale, 'about')}
 				>Go to About
 				<Icon size={20} name="mdi:arrow-right" />
 			</a>
