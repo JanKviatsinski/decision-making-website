@@ -2,14 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { SITE_BASE, SocialLinks } from '../../consts'
 import { Icon } from 'astro-icon/components'
-import BlogCard from '../../components/BlogCard.astro'
+// import BlogCard from '../../components/BlogCard.astro'
 import { getCollection } from 'astro:content'
 import TwoColumns from '@/components/TwoColumns.astro'
 import { Image } from 'astro:assets'
 
-const posts = (await getCollection('blog'))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 4)
+// const posts = (await getCollection('blog'))
+// 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+// 	.slice(0, 4)
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/**/*.{jpeg,jpg,png,gif,webp}'
@@ -46,7 +46,7 @@ const walkingInAGardenImage = '/src/assets/walking_in_a_garden.webp'
 	</main>
 
 	<!-- Recent Posts Section -->
-	<section class="app-container">
+	<!-- <section class="app-container">
 		<h2 class="section-title">Recent Posts</h2>
 		<div class="posts-grid-container">
 			{posts.map((post) => <BlogCard post={post} />)}
@@ -55,7 +55,7 @@ const walkingInAGardenImage = '/src/assets/walking_in_a_garden.webp'
 			>Read All
 			<Icon size={20} name="mdi:arrow-right" />
 		</a>
-	</section>
+	</section> -->
 
 	<TwoColumns>
 		<div slot="left" class="md:order-2">
@@ -108,16 +108,16 @@ const walkingInAGardenImage = '/src/assets/walking_in_a_garden.webp'
 		</div>
 	</TwoColumns>
 
-	<section class="app-container">
+	<section class="md:text-right app-container">
 		<h2 class="section-title">Human support shouldn't cost a fortune.</h2>
-		<p class="text-2xl md:max-w-3xl text-justify">
+		<p class="text-2xl md:max-w-3xl text-justify md:ml-auto">
 			I am simply one human helping another. You don't need to pay the high
 			rates of a professional coach or psychologist. I believe in a "pay what
 			you can" model—after each meeting, you decide on an amount that feels
 			right to you as a thank you.
 		</p>
-		<div class="flex justify-between text-justify md:max-w-2xl">
-			<a class="btn-primary" href="#payment" target="_blank"
+		<div class="flex justify-end text-justify">
+			<a class="btn-secondary" href="#payment"
 				>About payment <Icon height={20} name="mdi:hand-coin" /></a
 			>
 
@@ -125,42 +125,6 @@ const walkingInAGardenImage = '/src/assets/walking_in_a_garden.webp'
 				>Get in touch
 				<Icon height={20} name="mdi:calendar" />
 			</a> -->
-		</div>
-	</section>
-
-	<!-- Recent Posts Section -->
-	<!-- TODO replace section by TwoColumns -->
-	<section class="app-container py-20 grid lg:grid-cols-2 gap-28 lg:gap-10">
-		<div class="space-y-6">
-			<h2 class="section-title">About Me</h2>
-			<p class="text-lg max-w-xl pb-4">
-				A brief introduction about yourself. You can include your profession,
-				hobbies, interests, or anything you'd like visitors to know about you.
-			</p>
-			<a class="btn-secondary" href={`${SITE_BASE}/about`}
-				>Go to About
-				<Icon size={20} name="mdi:arrow-right" />
-			</a>
-		</div>
-		<div class="space-y-6">
-			<h2 class="section-title">Get in touch</h2>
-			<p class="text-lg max-w-xl">
-				Use the buttons below for my resume & email.
-			</p>
-			<div class="flex flex-wrap mt-auto space-x-4">
-				<a
-					class="btn-primary"
-					href="mailto:example@email.com"
-					download
-					target="_blank"
-					>Get in touch
-					<Icon height={20} name="mdi:email" />
-				</a>
-				<a class="btn-secondary" href="https://example.com" target="_blank"
-					>Download Resume
-					<Icon height={20} name="mdi:arrow-collapse-down" />
-				</a>
-			</div>
 		</div>
 	</section>
 
@@ -182,5 +146,36 @@ const walkingInAGardenImage = '/src/assets/walking_in_a_garden.webp'
 			<br />
 			<p class="font-bold text-2xl">Thank you so mutch!</p>
 		</p>
+	</section>
+
+	<!-- Recent Posts Section -->
+	<!-- TODO replace section by TwoColumns -->
+	<section class="app-container py-20 grid lg:grid-cols-2 gap-28 lg:gap-10">
+		<div class="space-y-6">
+			<h2 class="section-title">About Me</h2>
+			<p class="text-lg max-w-xl pb-4">
+				A brief introduction about yourself. You can include your profession,
+				hobbies, interests, or anything you'd like visitors to know about you.
+			</p>
+			<a class="btn-secondary" href={`${SITE_BASE}/about`}
+				>Go to About
+				<Icon size={20} name="mdi:arrow-right" />
+			</a>
+		</div>
+		<div class="space-y-6">
+			<h2 class="section-title">Get in touch</h2>
+			<p class="text-lg max-w-xl">
+				Use the buttons below for my resume & email.
+			</p>
+
+			<a
+				class="btn-primary"
+				href="mailto:example@email.com"
+				download
+				target="_blank"
+				>Get in touch
+				<Icon height={20} name="mdi:email" />
+			</a>
+		</div>
 	</section>
 </BaseLayout>
